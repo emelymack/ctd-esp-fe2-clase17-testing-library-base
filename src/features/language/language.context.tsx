@@ -12,7 +12,7 @@ const initialState = {
   language: 'ENGLISH' as Languages
 } as LanguageState;
 
-const LanguageContext = createContext<LanguageState | undefined>(undefined);
+export const LanguageContext = createContext<LanguageState | undefined>(undefined);
 
 export const LanguageProvider: FC = ({ children }) => {
   const [language, setLanguage] = useState<Languages>(initialState.language);
