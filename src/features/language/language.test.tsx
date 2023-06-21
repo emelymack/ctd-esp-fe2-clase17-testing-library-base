@@ -5,10 +5,18 @@ import { LanguageProvider } from "./language.context"
 
 
 describe('Language buttons component', ()=>{
+  beforeEach(() => {
+    render( 
+      <LanguageProvider>
+        <LanguageComponent />
+      </LanguageProvider>
+    )
+  })
+
   describe('When is rendered', () => {
     it('Should render 3 buttons', () => {
 
-      render( <LanguageProvider><LanguageComponent /></LanguageProvider>)
+      // render(<Component />)
 
       const buttons = screen.getAllByRole('button')
       
@@ -18,12 +26,21 @@ describe('Language buttons component', ()=>{
   describe('When button "Spanish" is clicked', ()=> {
     it('Should change its text to "Español"', () => {
 
-      render( <LanguageProvider><LanguageComponent /></LanguageProvider>)
+      const buttonsText = ['Español', 'Portugués', 'Inglés'];
 
-      const button = screen.getByText('Spanish')
+      // render(<Component />)
+
+      // const button = screen.getByText('Spanish')
+      const button = screen.getByRole('button', {name: 'Spanish'})
+
       userEvent.click(button)
       
-      expect(screen.getByText('Español'))
+      buttonsText.forEach(text => {
+        const button = screen.getByRole
+        ('button', {name: text})
+        
+        expect(button).toBeInTheDocument()
+      })
     })
   })
     
